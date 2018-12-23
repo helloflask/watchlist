@@ -8,3 +8,4 @@ name = "pypi"
 [packages]
 flask = "*"
 python-dotenv = "*"
+flask-sqlalchemy = "*"
