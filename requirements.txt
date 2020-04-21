@@ -1,0 +1,12 @@
+click==7.0
+flask-login==0.4.1
+flask-sqlalchemy==2.3.2
+flask==1.0.2
+itsdangerous==1.1.0
+jinja2==2.10
+markupsafe==1.1.0
+python-dotenv==0.10.1
+sqlalchemy==1.2.16
+werkzeug==0.14.1
+# dev
+coverage==4.5.2
