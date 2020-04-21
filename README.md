@@ -14,14 +14,6 @@ $ git clone https://github.com/greyli/watchlist.git
 $ cd watchlist
 ```
 create & active virtual enviroment then install dependencies:
-
-option 1 (with Pipenv):
-```
-$ pipenv install --dev
-$ pipenv shell
-```
-
-option 2 (with venv/virtualenv + pip):
 ```
 $ python -m venv env  # use `virtualenv env` for Python2, use `python3 ...` for Python3 on Linux & macOS
 $ source env/bin/activate  # use `env\Scripts\activate` on Windows
