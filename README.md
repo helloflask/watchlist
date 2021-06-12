@@ -1,10 +1,10 @@
 # Watchlist
 
-Example application for flask tutorial "[Flask 入门教程](http://helloflask.com/tutorial)".
+Example application for flask tutorial "[Flask 入门教程](https://helloflask.com/tutorial)".
 
 Demo: http://watchlist.helloflask.com
 
-![Screenshot](http://helloflask.com/screenshots/watchlist.png)
+![Screenshot](https://helloflask.com/screenshots/watchlist.png)
 
 ## Installation
 
