@@ -5,6 +5,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from watchlist import app, db
 from watchlist.models import User, Movie
 
+from imdb import IMDb
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -60,6 +61,13 @@ def delete(movie_id):
     flash('Item deleted.')
     return redirect(url_for('index'))
 
+@app.route('/<string:movie_title>')
+def imdb(movie_title):
+    imdb = IMDb()
+    search = imdb.search_movie(movie_title)
+    id = search[0].getID()
+
+    return redirect('https://www.imdb.com/title/tt{}'.format(id))
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required

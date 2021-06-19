@@ -3,9 +3,11 @@ coverage==5.1
 Flask==1.1.1
 Flask-Login==0.4.1
 Flask-SQLAlchemy==2.4.0
+IMDbPY==2021.4.18
 itsdangerous==1.1.0
 Jinja2==2.10.1
+lxml==4.6.3
 MarkupSafe==1.1.1
 python-dotenv==0.10.3
 SQLAlchemy==1.3.6
-Werkzeug==0.15.4
+Werkzeug==2.0.1
