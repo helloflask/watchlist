@@ -10,7 +10,7 @@ Demo: http://watchlist.helloflask.com
 
 clone:
 ```
-$ git clone https://github.com/greyli/watchlist.git
+$ git clone https://github.com/helloflask/watchlist.git
 $ cd watchlist
 ```
 create & active virtual enviroment then install dependencies:
