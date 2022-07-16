@@ -1,6 +1,5 @@
-flask==1.1.4
+flask
 python-dotenv
 flask-login
 flask-sqlalchemy
 coverage
-werkzeug==0.15.5
