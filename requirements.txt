@@ -17,21 +17,21 @@ flask-login==0.6.1
     # via -r requirements.in
 flask-sqlalchemy==2.5.1
     # via -r requirements.in
-importlib-metadata==4.12.0
-    # via flask
+greenlet==2.0.2
+    # via sqlalchemy
 itsdangerous==2.1.2
     # via flask
 jinja2==3.1.2
     # via flask
 markupsafe==2.1.1
-    # via jinja2
+    # via
+    #   jinja2
+    #   werkzeug
 python-dotenv==0.20.0
     # via -r requirements.in
 sqlalchemy==1.4.39
     # via flask-sqlalchemy
-werkzeug==2.1.2
+werkzeug==2.2.3
     # via
     #   flask
     #   flask-login
-zipp==3.8.1
-    # via importlib-metadata
