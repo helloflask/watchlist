@@ -1,31 +1,31 @@
 import unittest
 
-from watchlist import app, db
+from watchlist import create_app
+from watchlist.extensions import db
 from watchlist.models import Movie, User
-from watchlist.commands import forge, initdb
 
 
 class WatchlistTestCase(unittest.TestCase):
 
     def setUp(self):
-        app.config.update(
-            TESTING=True,
-            SQLALCHEMY_DATABASE_URI='sqlite:///:memory:'
-        )
-        db.create_all()
+        self.app = create_app('testing')
+        self.context = self.app.app_context()
+        self.context.push()
 
+        db.create_all()
         user = User(name='Test', username='test')
         user.set_password('123')
         movie = Movie(title='Test Movie Title', year='2019')
         db.session.add_all([user, movie])
         db.session.commit()
 
-        self.client = app.test_client()
-        self.runner = app.test_cli_runner()
+        self.client = self.app.test_client()
+        self.runner = self.app.test_cli_runner()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+        self.context.pop()
 
     def login(self):
         self.client.post('/login', data=dict(
@@ -34,10 +34,10 @@ class WatchlistTestCase(unittest.TestCase):
         ), follow_redirects=True)
 
     def test_app_exist(self):
-        self.assertIsNotNone(app)
+        self.assertIsNotNone(self.app)
 
     def test_app_is_testing(self):
-        self.assertTrue(app.config['TESTING'])
+        self.assertTrue(self.app.config['TESTING'])
 
     def test_404_page(self):
         response = self.client.get('/nothing')
@@ -211,12 +211,12 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertNotIn('Test Movie Title', data)
 
     def test_forge_command(self):
-        result = self.runner.invoke(forge)
+        result = self.runner.invoke(args=['forge'])
         self.assertIn('Done.', result.output)
         self.assertNotEqual(Movie.query.count(), 0)
 
     def test_initdb_command(self):
-        result = self.runner.invoke(initdb)
+        result = self.runner.invoke(args=['init-db'])
         self.assertIn('Initialized database.', result.output)
 
     def test_admin_command(self):
