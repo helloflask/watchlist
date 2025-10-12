@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 from flask_login import UserMixin
@@ -10,8 +12,8 @@ class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(20))
-    username: Mapped[str | None] = mapped_column(String(20))
-    password_hash: Mapped[str | None] = mapped_column(String(128))
+    username: Mapped[str] = mapped_column(String(20))
+    password_hash: Mapped[Optional[str]] = mapped_column(String(128))
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
