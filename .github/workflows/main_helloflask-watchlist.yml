@@ -6,7 +6,7 @@ name: Build and deploy Python app to Azure Web App - helloflask-watchlist
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-deploy:
@@ -18,13 +18,13 @@ jobs:
     - name: Set up Python version
       uses: actions/setup-python@v1
       with:
-        python-version: '3.6'
+        python-version: '3.13'
 
     - name: Build using AppService-Build
       uses: azure/appservice-build@v1
       with:
         platform: python
-        platform-version: '3.6'
+        platform-version: '3.13'
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1

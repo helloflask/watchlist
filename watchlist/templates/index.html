@@ -14,8 +14,8 @@
     <li>{{ movie.title }} - {{ movie.year }}
         <span class="float-right">
             {% if current_user.is_authenticated %}
-            <a class="btn" href="{{ url_for('edit', movie_id=movie.id) }}">Edit</a>
-            <form class="inline-form" method="post" action="{{ url_for('delete', movie_id=movie.id) }}">
+            <a class="btn" href="{{ url_for('main.edit', movie_id=movie.id) }}">Edit</a>
+            <form class="inline-form" method="post" action="{{ url_for('main.delete', movie_id=movie.id) }}">
                 <input class="btn" type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure?')">
             </form>
             {% endif %}
