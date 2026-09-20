@@ -18,5 +18,5 @@ def load_user(user_id):
     return user
 
 
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 # login_manager.login_message = 'Your custom message'

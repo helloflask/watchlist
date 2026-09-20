@@ -62,6 +62,21 @@ class WatchlistTestCase(unittest.TestCase):
         self.assertNotIn('Delete', data)
         self.assertNotIn('Edit', data)
 
+    def test_protected_view_redirects_to_login(self):
+        response = self.client.get('/settings', follow_redirects=True)
+        self.assertEqual(len(response.history), 1)
+        self.assertEqual(response.history[0].status_code, 302)
+        self.assertEqual(response.history[0].headers['Location'], '/login?next=%2Fsettings')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.request.path, '/login')
+        self.assertIn('name="username"', response.get_data(as_text=True))
+
+    def test_password_hash_fits_column(self):
+        user = db.session.get(User, 1)
+        self.assertLessEqual(len(user.password_hash), User.__table__.c.password_hash.type.length)
+        self.assertTrue(user.validate_password('123'))
+        self.assertFalse(user.validate_password('wrong'))
+
     def test_login(self):
         response = self.client.post('/login', data=dict(
             username='test',
