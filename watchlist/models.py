@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(20))
     username: Mapped[str] = mapped_column(String(20))
-    password_hash: Mapped[Optional[str]] = mapped_column(String(128))
+    password_hash: Mapped[Optional[str]] = mapped_column(String(256))
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
